@@ -1,0 +1,27 @@
+server:
+  port: 8081
+  shutdown: graceful
+
+spring:
+  application:
+    name: "sales-analysis"
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/sales_analysis_db
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 12
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
